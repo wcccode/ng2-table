@@ -11,7 +11,7 @@ let template = require('./table-demo.html');
 export class TableDemoComponent implements OnInit {
   public rows:Array<any> = [];
   public columns:Array<any> = [
-    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'Name', name: 'name', rowClassName: ['row-class-name'], filtering: {filterString: '', placeholder: 'Filter by name'}},
     {
       title: 'Position',
       name: 'position',
@@ -21,7 +21,7 @@ export class TableDemoComponent implements OnInit {
     {title: 'Office', className: ['office-header', 'text-success'], name: 'office', sort: 'asc'},
     {title: 'Extn.', name: 'ext', sort: '', filtering: {filterString: '', placeholder: 'Filter by extn.'}},
     {title: 'Start date', className: 'text-warning', name: 'startDate'},
-    {title: 'Salary ($)', name: 'salary', aggregate: "yes"}
+    {title: 'Salary ($)', name: 'salary', aggregate: (rows: any, name: any) => {return this.data.reduce((sum, val) => {return sum+parseFloat(val[name])}, 0)}}
   ];
   public page:number = 1;
   public itemsPerPage:number = 10;

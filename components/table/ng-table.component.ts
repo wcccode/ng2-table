@@ -27,11 +27,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
         </td>
       </tr>
         <tr *ngFor="let row of rows">
-          <td (click)="cellClick(row, column.name)" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
+          <td (click)="cellClick(row, column.name)" ngClass="{{column.rowClassName || ''}}" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
         </tr>
         <tr *ngIf="showAggregateRow">
           <td *ngFor="let column of columns">
-            <span *ngIf="column.aggregate">aggregate</span>
+            <span *ngIf="column.aggregate">{{column.aggregate(rows, column.name)}}</span>
           </td>
         </tr>
       </tbody>

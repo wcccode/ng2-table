@@ -1,6 +1,6 @@
 {
   "name": "ng2-table-variety",
-  "version": "1.3.3",
+  "version": "1.3.5",
   "description": "Simple angular2 table components with sorting, filtering...",
   "scripts": {
     "flow.compile": "npm run flow.compile:common && npm run flow.compile:system ",
