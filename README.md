@@ -22,7 +22,7 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
 1. A recommended way to install ***ng2-table*** is through [npm](https://www.npmjs.com/search?q=ng2-table) package manager using the following command:
 
   ```bash
-  npm i ng2-table --save
+  npm i ng2-table-variety --save
   ```
 
   Alternatively, you can [download it in a ZIP file](https://github.com/valor-software/ng2-table/archive/master.zip).

@@ -29,6 +29,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
         <tr *ngFor="let row of rows">
           <td (click)="cellClick(row, column.name)" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
         </tr>
+        <tr *ngIf="showAggregateRow">
+          <td *ngFor="let column of columns">
+            <span *ngIf="column.aggregate">aggregate</span>
+          </td>
+        </tr>
       </tbody>
     </table>
   `
@@ -53,12 +58,16 @@ export class NgTableComponent {
   @Output() public cellClicked:EventEmitter<any> = new EventEmitter();
 
   public showFilterRow:Boolean = false;
+  public showAggregateRow:Boolean = false;
 
   @Input()
   public set columns(values:Array<any>) {
     values.forEach((value:any) => {
       if (value.filtering) {
         this.showFilterRow = true;
+      }
+      if (value.aggregate) {
+        this.showAggregateRow = true;
       }
       if (value.className && value.className instanceof Array) {
         value.className = value.className.join(' ');
