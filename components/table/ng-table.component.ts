@@ -6,10 +6,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   template: `
     <table class="table dataTable" ngClass="{{config.className || ''}}"
            role="grid" style="width: 100%;">
-      <thead>
+      <thead class="lock">
         <tr role="row">
-          <th *ngFor="let column of columns" [ngTableSorting]="config" [column]="column" 
-              (sortChanged)="onChangeTable($event)" ngClass="{{column.className || ''}}">
+          <th *ngFor="let column of columns; let i=index" [ngTableSorting]="config" [column]="column" 
+              (sortChanged)="onChangeTable($event)" ngClass="{{column.className || ''}}" class="{{i==-1?'lock':'unlock'}}">
             {{column.title}}
             <i *ngIf="config && column.sort" class="pull-right fa"
               [ngClass]="{'fa-chevron-down': column.sort === 'desc', 'fa-chevron-up': column.sort === 'asc'}"></i>
@@ -17,17 +17,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
         </tr>
       </thead>
       <tbody>
-      <tr *ngIf="showFilterRow">
-        <td *ngFor="let column of columns">
-          <input *ngIf="column.filtering" placeholder="{{column.filtering.placeholder}}"
-                 [ngTableFiltering]="column.filtering"
-                 class="form-control"
-                 style="width: auto;"
-                 (tableChanged)="onChangeTable(config)"/>
-        </td>
-      </tr>
+      
         <tr *ngFor="let row of rows">
-          <td (click)="cellClick(row, column.name)" ngClass="{{column.rowClassName || ''}}" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
+          <td class="{{i==0?'lock':'unlock'}}" (click)="cellClick(row, column.name)" ngClass="{{column.rowClassName || ''}}" *ngFor="let column of columns; let i=index" [innerHtml]="sanitize(getData(row, column.name))"></td>
         </tr>
         <tr *ngIf="showAggregateRow">
           <td *ngFor="let column of columns">
@@ -113,6 +105,7 @@ export class NgTableComponent {
   }
 
   public onChangeTable(column:any):void {
+    console.log("ng-table emit tablechange" + column)
     this._columns.forEach((col:any) => {
       if (col.name !== column.name && col.sort !== false) {
         col.sort = '';

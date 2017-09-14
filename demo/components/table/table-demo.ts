@@ -33,7 +33,7 @@ export class TableDemoComponent implements OnInit {
     paging: true,
     sorting: {columns: this.columns},
     filtering: {filterString: ''},
-    className: ['table-striped', 'table-bordered']
+    className: ['table-striped', 'table-bordered', 'table-hover', 'table-condensed']
   };
 
   private data:Array<any> = TableData;
@@ -98,10 +98,11 @@ export class TableDemoComponent implements OnInit {
     }
 
     if (config.filtering.columnName) {
+
       return filteredData.filter((item:any) =>
         item[config.filtering.columnName].match(this.config.filtering.filterString));
     }
-
+    console.log(this.config.filtering.filterString)
     let tempArray:Array<any> = [];
     filteredData.forEach((item:any) => {
       let flag = false;
@@ -129,6 +130,7 @@ export class TableDemoComponent implements OnInit {
     }
 
     let filteredData = this.changeFilter(this.data, this.config);
+    console.log(filteredData)
     let sortedData = this.changeSort(filteredData, this.config);
     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
     this.length = sortedData.length;

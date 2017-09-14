@@ -246,3 +246,23 @@ pre {
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
+.scrolling thead{
+
+margin-left: 5rem;
+width: 100px;
+top: 0rem;
+}
+ 
+.lock {
+  position: absolute;
+ *position: relative; /*ie7*/
+  left: 0;
+  width: 120px;
+}
+
+.inner {
+  overflow-x: auto;
+  overflow-y: visible;
+  margin-left: 120px;
+  height: 350px;
+}

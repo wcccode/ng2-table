@@ -29,6 +29,7 @@ export class NgTableFilteringDirective {
   @HostListener('input', ['$event.target.value'])
   public onChangeFilter(event:any):void {
     this.ngTableFiltering.filterString = event;
+    console.log("input emit tablechange")
     this.tableChanged.emit({filtering: this.ngTableFiltering});
   }
 
