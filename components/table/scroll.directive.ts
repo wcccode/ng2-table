@@ -45,7 +45,6 @@ export class ScrollDirective {
     const isReachingBottom = (scrollPosition - offsetHeight) < this.bottomOffset;
     const emitValue: ScrollEvent = {isReachingBottom, originalEvent: $event, isWindowEvent: false, scrollLeft: target.scrollLeft, scrollTop: target.scrollTop};
    
-    console.log("scrollPosition="+ scrollPosition+" target.scrollLeft="+target.scrollLeft+" target.scrollTop="+target.scrollTop)
     this.onScroll.emit(emitValue);
   }
 
