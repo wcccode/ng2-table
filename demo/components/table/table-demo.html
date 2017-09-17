@@ -6,15 +6,13 @@
 <br>
 <!-- <div style="overflow: scroll;    height: 350px;"> -->
  
-      <div class="scrolling outer">
-        <div class="inner">
+      
 <ng-table [config]="config"
           (tableChanged)="onChangeTable(config)"
           (cellClicked)="onCellClick($event)"
           [rows]="rows" [columns]="columns">
 </ng-table>
- </div>
-      </div>
+
  
 <pagination *ngIf="config.paging"
             class="pagination-sm"

@@ -248,21 +248,79 @@ pre {
 }
 .scrolling thead{
 
-margin-left: 5rem;
-width: 100px;
-top: 0rem;
+
 }
  
 .lock {
-  position: absolute;
- *position: relative; /*ie7*/
-  left: 0;
-  width: 120px;
+
 }
 
 .inner {
-  overflow-x: auto;
-  overflow-y: visible;
-  margin-left: 120px;
   height: 350px;
+
+
+
+}
+
+  table {
+  position: relative;
+  width: 700px;
+  overflow: hidden;
+  border-collapse: collapse;
+   background-color: #34495E;
+  color: #fff;
+}
+
+
+/*thead*/
+thead {
+  position: relative;
+  display: block; /*seperates the header from the body allowing it to be positioned*/
+  width: 700px;
+  overflow: visible;
+  background: #34495E;
+  color: #fff;
+}
+
+thead th {
+  min-width: 120px;
+  border: 0!important;
+  border: 0px solid #222;
+  background-color: #34495E;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+thead th:nth-child(1) {/*first cell in the header*/
+  position: relative;
+  display: block; /*seperates the first cell in the header from the header*/
+  border-bottom: 0px;
+  line-height: 2;
+}
+
+
+/*tbody*/
+tbody {
+  position: relative;
+  display: block; /*seperates the tbody from the header*/
+  width: 700px;
+  height: 239px;
+  overflow: scroll;
+}
+
+tbody td {
+  min-width: 8rem;
+  border: 0!important;
+  white-space: nowrap;
+  word-break: break-all;
+  padding: 0.5rem;
+  min-height: 3rem;
+}
+
+tbody tr td:nth-child(1) {  /*the first cell in each tr*/
+  position: relative;
+  display: block; /*seperates the first column from the tbody*/
+  background-color: #34495E;
+  color: #fff;
+    line-height: 2;
 }
