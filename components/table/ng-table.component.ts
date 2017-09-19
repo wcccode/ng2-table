@@ -5,7 +5,7 @@ import { ScrollEvent } from './scroll.directive'
 @Component({
   selector: 'ng-table',
   template: `
-    <table class="ngtable" ngClass="{{config.className || ''}}" role="grid" >
+    <table ngClass="{{config.className || ''}}" role="grid" >
       <thead [ngStyle]="firstRowStyle">
         <tr role="row">
           <th *ngFor="let column of columns; let i=index" id="th{{i}}" [ngStyle]="i==0 ? firstColumnStyle : ''" [ngTableSorting]="config" [column]="column" 
@@ -42,8 +42,6 @@ import { ScrollEvent } from './scroll.directive'
       width: 700px;
       overflow: hidden;
       border-collapse: collapse;
-       background-color: #34495E;
-      color: #fff;
     }
 
     /*thead*/
@@ -52,16 +50,10 @@ import { ScrollEvent } from './scroll.directive'
       display: block; /*seperates the header from the body allowing it to be positioned*/
       width: 700px;
       overflow: visible;
-      background: #34495E;
-      color: #fff;
     }
 
     .ngtable thead th {
-      min-width: 120px;
-      border: 0!important;
-      border: 0px solid #222;
-      background-color: #34495E;
-      color: #fff;
+      border: 0; 
       padding: 0.5rem;
     }
 
@@ -71,7 +63,6 @@ import { ScrollEvent } from './scroll.directive'
       border-bottom: 0px;
       line-height: 2;
     }
-
 
     /*tbody*/
     .ngtable tbody {
@@ -83,20 +74,16 @@ import { ScrollEvent } from './scroll.directive'
     }
 
     .ngtable tbody td {
-      min-width: 8rem;
       border: 0!important;
       white-space: nowrap;
       word-break: break-all;
       padding: 0.5rem;
-      min-height: 3rem;
     }
 
     .ngtable tbody tr td:nth-child(1) {  /*the first cell in each tr*/
       position: relative;
       display: block; /*seperates the first column from the tbody*/
-      background-color: #34495E;
-      color: #fff;
-        line-height: 2;
+      line-height: 2;
     }
   `]
 })
@@ -107,7 +94,7 @@ export class NgTableComponent implements  AfterViewChecked, AfterViewInit{
   @Input()
   public set config(conf:any) {
     if (!conf.className) {
-      conf.className = 'table-striped table-bordered';
+      conf.className = 'ngtable table-striped table-bordered';
     }
     if (conf.className instanceof Array) {
       conf.className = conf.className.join(' ');
