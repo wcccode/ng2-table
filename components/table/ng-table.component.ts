@@ -29,7 +29,7 @@ import { ScrollEvent } from './scroll.directive'
           <td (click)="cellClick(row, column.name)" class="{{ridx==0 ? 'firstTd' : ''}}" id="{{ridx==0 ? 'td'+i: ''}}" [ngStyle]="i==0 ? firstColumnStyle : ''" ngClass="{{column.rowClassName || ''}}" *ngFor="let column of columns; let i=index" [innerHtml]="sanitize(getData(row, column.name))"></td>
         </tr>
         <tr *ngIf="rows.length > 0 && showAggregateRow">
-          <td *ngFor="let column of columns">
+          <td *ngFor="let column of columns" ngClass="{{column.rowClassName || ''}}">
             <span *ngIf="column.aggregate">{{column.aggregate(rows, column.name)}}</span>
           </td>
         </tr>
